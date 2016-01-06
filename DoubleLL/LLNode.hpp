@@ -11,11 +11,17 @@
 
 #include <stdio.h>
 
+template <typename T> class LinkedList; //forward declare
+
 template <typename T>
 class LLNode{
 public:
+    friend class LinkedList<T>;     //friend class when types match
     
 private:
+    
+    
+    
     LLNode(T);
     LLNode(const LLNode<T> &);
     ~LLNode();
@@ -36,7 +42,7 @@ private:
 template <typename T>
 LLNode<T>::LLNode(T data) : _next(nullptr), _prev(nullptr)
 {
-    _data = data;
+    _data = data;       
 }
 
 template <typename T>
