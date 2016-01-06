@@ -26,6 +26,8 @@
 		3CA6F7F81C3DCA4900D3D74F /* DoubleLL */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = DoubleLL; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CA6F7FB1C3DCA4900D3D74F /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3CA6F8021C3DCE7F00D3D74F /* stub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stub.cpp; sourceTree = "<group>"; };
+		3CA6F8061C3DCF5E00D3D74F /* LinkedList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LinkedList.hpp; path = LinkedList/LinkedList.hpp; sourceTree = "<group>"; };
+		3CA6F80C1C3DCF9D00D3D74F /* LLNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LLNode.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,10 +60,36 @@
 		3CA6F7FA1C3DCA4900D3D74F /* DoubleLL */ = {
 			isa = PBXGroup;
 			children = (
+				3CA6F8091C3DCF7000D3D74F /* Main & Testing */,
+				3CA6F8081C3DCF6600D3D74F /* LinkedList */,
+			);
+			path = DoubleLL;
+			sourceTree = "<group>";
+		};
+		3CA6F8081C3DCF6600D3D74F /* LinkedList */ = {
+			isa = PBXGroup;
+			children = (
+				3CA6F80A1C3DCF7C00D3D74F /* Node */,
+				3CA6F8061C3DCF5E00D3D74F /* LinkedList.hpp */,
+			);
+			name = LinkedList;
+			sourceTree = "<group>";
+		};
+		3CA6F8091C3DCF7000D3D74F /* Main & Testing */ = {
+			isa = PBXGroup;
+			children = (
 				3CA6F7FB1C3DCA4900D3D74F /* main.cpp */,
 				3CA6F8021C3DCE7F00D3D74F /* stub.cpp */,
 			);
-			path = DoubleLL;
+			name = "Main & Testing";
+			sourceTree = "<group>";
+		};
+		3CA6F80A1C3DCF7C00D3D74F /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				3CA6F80C1C3DCF9D00D3D74F /* LLNode.hpp */,
+			);
+			name = Node;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
