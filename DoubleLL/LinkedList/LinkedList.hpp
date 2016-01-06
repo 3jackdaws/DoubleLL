@@ -10,6 +10,8 @@
 #define LinkedList_hpp
 
 #include <stdio.h>
+#include "LLNode.hpp"
+
 template <typename T>
 class LinkedList
 {

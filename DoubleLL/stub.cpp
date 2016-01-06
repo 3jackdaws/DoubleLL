@@ -5,7 +5,7 @@ using std::endl;
 #include <crtdbg.h>
 #define _CRTDBG_MAP_ALLOC
 
-#include "doublelinkedlist.h"
+#include "LinkedList.hpp"
 
 void TestAppend(DoubleLinkedList<int> & alist);
 
