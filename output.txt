@@ -1,0 +1,169 @@
+Output:
+
+********** Testing: DoubleLinkedList default ctor  **********
+
+********** Testing: DoubleLinkedList copy ctor with empty list **********
+
+********** Testing: DoubleLinkedList op = **********
+
+********** Testing: DoubleLinkedList getters  **********
+0x0
+0x0
+
+********** Testing: DoubleLinkedList Append **********
+5
+35
+
+********** Testing: DoubleLinkedList First and Last **********
+
+********** Testing: First and Last with Full List **********
+5
+35
+
+********** Testing: First with Empty List **********
+No first
+
+********** Testing: First with Empty List **********
+No last
+
+********** Testing: DoubleLinkedList Prepend **********
+
+********** Testing: Prepend with Full List **********
+0
+35
+
+********** Testing: Prepend with Empty List **********
+500
+100
+Delete: 100
+Delete: 200
+Delete: 300
+Delete: 400
+
+********** Testing: DoubleLinkedList Copy ctor with Full List **********
+
+********** Testing: DoubleLinkedList Purge with Full List **********
+
+********** Testing: Before Purge Full List **********
+0x1005001a0
+0x100500060
+Delete: 35
+Delete: 25
+Delete: 15
+Delete: 5
+Delete: 4
+Delete: 3
+Delete: 2
+Delete: 1
+
+********** Testing: After Purge Full List **********
+0x0
+0x0
+
+********** Testing: DoubleLinkedList Purge with Empty List **********
+
+********** Testing: Before Purge Empty List **********
+0x0
+0x0
+
+********** Testing: After Purge Empty List **********
+0x0
+0x0
+
+********** Testing: DoubleLinkedList InsertBefore **********
+
+********** Testing: InsertBefore with Empty List **********
+Data not found within list
+
+********** Testing: InsertBefore head with only one node **********
+-1
+0
+
+********** Testing: InsertBefore head with multiple nodes **********
+-3
+0
+
+********** Testing: InsertBefore a node in the middle of the list **********
+-3
+0
+
+********** Testing: InsertBefore but existing_data doesn't exist **********
+Data not found within list
+Delete: 0
+Delete: -1
+Delete: -2
+
+********** Testing: DoubleLinkedList InsertAfter **********
+
+********** Testing: InsertAfter with Empty List **********
+Data not found within list
+
+********** Testing: InsertAfter tail with only one node **********
+0
+1
+
+********** Testing: InsertAfter tail with multiple nodes **********
+0
+3
+
+********** Testing: InsertAfter a node in the middle of the list **********
+0
+3
+
+********** Testing: InsertAfter but existing_data doesn't exist **********
+Data not found within list
+Delete: 3
+Delete: 2
+Delete: 1
+
+********** Testing: DoubleLinkedList Extract **********
+
+********** Testing: Extract with empty list**********
+Data not found within list
+
+********** Testing: Extract removing only node **********
+No first
+No last
+
+********** Testing: Extract removing head **********
+1
+1
+
+********** Testing: Extract removing tail **********
+0
+0
+
+********** Testing: Extract removing non-existing node **********
+Data not found within list
+Delete: 1
+Delete: 0
+
+********** Testing: List Integrity **********
+0
+1
+2
+3
+4
+5
+15
+25
+35
+35
+25
+15
+5
+4
+3
+2
+1
+0
+sh: pause: command not found
+Delete: 35
+Delete: 25
+Delete: 15
+Delete: 5
+Delete: 4
+Delete: 3
+Delete: 2
+Delete: 1
+Program ended with exit code: 0
