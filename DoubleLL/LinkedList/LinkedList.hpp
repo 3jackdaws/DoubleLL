@@ -1,5 +1,5 @@
 //
-//  LinkedList.hpp
+//  DoubleLinkedList.hpp
 //  DoubleLL
 //
 //  Created by Ian Murphy on 1/6/16.
@@ -7,20 +7,20 @@
 //
 
 
-#ifndef LinkedList_hpp
-#define LinkedList_hpp
+#ifndef DoubleLinkedList_hpp
+#define DoubleLinkedList_hpp
 
 #include <iostream>
 #include "LLNode.hpp"
 
 template <typename T>
-class LinkedList
+class DoubleLinkedList
 {
 public:
     
     bool isEmpty();
-    const T& First();
-    const T& Last();
+    const T& First() const;
+    const T& Last() const;
     void Prepend(T);
     void Append(T);
     void Purge();
@@ -33,32 +33,35 @@ public:
     T& getHead();
     T& getTail();
     
-    LinkedList();
-    ~LinkedList();
-    LinkedList(const LinkedList<T> &);
-    LinkedList<T> & operator = (const LinkedList<T> &);
+    DoubleLinkedList();
+    ~DoubleLinkedList();
+    DoubleLinkedList(const DoubleLinkedList<T> &);
+    DoubleLinkedList<T> & operator = (const DoubleLinkedList<T> &);
     
     //data members
     
     LLNode<T> * _head;
     LLNode<T> * _tail;
     
+private:
+    LLNode<T> & Find(T);
+    
 };
 
 template <typename T>
-LinkedList<T>::LinkedList() : _head(nullptr), _tail(nullptr)
+DoubleLinkedList<T>::DoubleLinkedList() : _head(nullptr), _tail(nullptr)
 {
     
 }
 
 template <typename T>
-LinkedList<T>::~LinkedList()
+DoubleLinkedList<T>::~DoubleLinkedList()
 {
     Purge();
 }
 
 template <typename T>
-LinkedList<T>::LinkedList(const LinkedList<T> & cp)
+DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList<T> & cp)
 {
     LLNode<T> * travel = _head;
     while(travel != nullptr)
@@ -69,7 +72,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> & cp)
 }
 
 template <typename T>
-LinkedList<T> & LinkedList<T>::operator=(const LinkedList<T> & rhs)
+DoubleLinkedList<T> & DoubleLinkedList<T>::operator=(const DoubleLinkedList<T> & rhs)
 {
     Purge();
     LLNode<T> * travel = rhs._head;
@@ -78,10 +81,11 @@ LinkedList<T> & LinkedList<T>::operator=(const LinkedList<T> & rhs)
         Append(travel->_data);
         travel = travel->_next;
     }
+    return *this;
 }
 
 template <typename T>
-bool LinkedList<T>::isEmpty()
+bool DoubleLinkedList<T>::isEmpty()
 {
     if(_head == nullptr)
         return true;
@@ -89,19 +93,19 @@ bool LinkedList<T>::isEmpty()
 }
 
 template <typename T>
-const T & LinkedList<T>::First()
+const T & DoubleLinkedList<T>::First() const
 {
     return _head->_data;
 }
 
 template <typename T>
-const T & LinkedList<T>::Last()
+const T & DoubleLinkedList<T>::Last() const
 {
     return _tail->_data;
 }
 
 template <typename T>
-void LinkedList<T>::Prepend(T data)
+void DoubleLinkedList<T>::Prepend(T data)
 {
     LLNode<T> * old_head = _head;
     _head = new LLNode<T>(data);
@@ -113,7 +117,7 @@ void LinkedList<T>::Prepend(T data)
 }
 
 template <typename T>
-void LinkedList<T>::Append(T data)
+void DoubleLinkedList<T>::Append(T data)
 {
     if(_tail != nullptr)
     {
@@ -129,7 +133,7 @@ void LinkedList<T>::Append(T data)
 }
 
 template <typename T>
-void LinkedList<T>::Purge()
+void DoubleLinkedList<T>::Purge()
 {
     LLNode<T> * travel = _head;
     if(_head != nullptr && _head->_next != nullptr)
@@ -149,7 +153,7 @@ void LinkedList<T>::Purge()
 }
 
 template <typename T>
-T LinkedList<T>::Extract(T data)
+T DoubleLinkedList<T>::Extract(T data)
 {
     
     LLNode<T> * travel = _head;
@@ -176,7 +180,7 @@ T LinkedList<T>::Extract(T data)
 
 
 template <typename T>
-void LinkedList<T>::InsertAfter(T put, T find)
+void DoubleLinkedList<T>::InsertAfter(T put, T find)
 {
     LLNode<T> * travel = _head;
     while (travel != nullptr && travel->_data != find)
@@ -200,7 +204,7 @@ void LinkedList<T>::InsertAfter(T put, T find)
 }
 
 template <typename T>
-void LinkedList<T>::PrintForwards()
+void DoubleLinkedList<T>::PrintForwards()
 {
     LLNode<T> * travel = _head;
     while (travel != nullptr) {
@@ -211,4 +215,4 @@ void LinkedList<T>::PrintForwards()
 
 
 
-#endif /* LinkedList_hpp */
+#endif /* DoubleLinkedList_hpp */

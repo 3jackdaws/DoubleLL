@@ -20,7 +20,7 @@ void TestExtract();
 int main()
 {
     // Please put in every lab and assignment this term for ease of testing for memory leaks
-    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
     
     cout << "\n********** Testing: DoubleLinkedList default ctor  **********\n";
     DoubleLinkedList<int> alist;			//ctor

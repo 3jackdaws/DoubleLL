@@ -11,12 +11,12 @@
 
 #include <stdio.h>
 
-template <typename T> class LinkedList; //forward declare
+template <typename T> class DoubleLinkedList; //forward declare
 
 template <typename T>
 class LLNode{
 public:
-    friend class LinkedList<T>;     //friend class when types match
+    friend class DoubleLinkedList<T>;     //friend class when types match
     
 private:
     
