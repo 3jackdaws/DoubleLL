@@ -89,7 +89,7 @@ void TestFirstAndLast(const DoubleLinkedList<int> & alist)
     {
         std::cout << blist.First() << std::endl;
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -98,7 +98,7 @@ void TestFirstAndLast(const DoubleLinkedList<int> & alist)
     {
         std::cout << blist.Last() << std::endl;
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -169,7 +169,7 @@ void TestInsertBefore()
         //void DoubleLinkedList<T>::InsertBefore(const T & new_data, const T & existing_data)
         clist.InsertBefore(-1, 0);
     }
-    catch(char * msg)
+    catch(const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -197,7 +197,7 @@ void TestInsertBefore()
     {
         clist.InsertBefore(-2, 99);
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -215,7 +215,7 @@ void TestInsertAfter()
         //void DoubleLinkedList<T>::InsertAfter(const T & new_data, const T & existing_data)
         clist.InsertAfter(-1, 0);
     }
-    catch(char * msg)
+    catch(const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -243,7 +243,7 @@ void TestInsertAfter()
     {
         clist.InsertAfter(-2, 99);
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -260,7 +260,7 @@ void TestExtract()
         //Note: The parameter is the DATA to be removed
         alist.Extract(0);
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -272,7 +272,7 @@ void TestExtract()
     {
         std::cout << alist.First() << std::endl;
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -280,7 +280,7 @@ void TestExtract()
     {
         std::cout << alist.Last() << std::endl;
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }
@@ -308,7 +308,7 @@ void TestExtract()
     {
         alist.Extract(99);
     }
-    catch (char * msg)
+    catch (const char * msg)
     {
         std::cout << msg << std::endl;
     }

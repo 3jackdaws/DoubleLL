@@ -97,7 +97,8 @@ const T & DoubleLinkedList<T>::First() const
 {
     if(!_head)
         throw "No first";
-    return _head->_data;
+    else
+        return _head->_data;
 }
 
 template <typename T>
@@ -111,13 +112,18 @@ const T & DoubleLinkedList<T>::Last() const
 template <typename T>
 void DoubleLinkedList<T>::Prepend(T data)
 {
-    LLNode<T> * old_head = _head;
-    _head = new LLNode<T>(data);
-    _head->_next = old_head;
-    if(_tail == nullptr)
+    if(_head == nullptr)
     {
+        _head = new LLNode<T>(data);
         _tail = _head;
     }
+    else{
+        LLNode<T> * old_head = _head;
+        _head = new LLNode<T>(data);
+        old_head->_prev = _head;
+        _head->_next = old_head;
+    }
+    
 }
 
 template <typename T>
@@ -193,23 +199,21 @@ void DoubleLinkedList<T>::InsertAfter(T put, T find)
     }
     if(travel)
     {
-        LLNode<T> * nn = new LLNode<T>(put);
-        
-        if(travel == _head)
+        if(travel == _tail)
         {
+            Append(put);
+        }
+        else if(travel == _head)
+        {
+            LLNode<T> * nn = new LLNode<T>(put);
             nn->_prev = _head;
             nn->_next = _head->_next;
             _head->_next->_prev = nn;
             _head->_next = nn;
         }
-        else if(travel == _tail)
-        {
-            nn->_prev = _tail;
-            _tail->_next = nn;
-            _tail = nn;
-        }
         else
         {
+            LLNode<T> * nn = new LLNode<T>(put);
             nn->_next = travel->_next;
             nn->_prev = travel;
             travel->_next->_prev = nn;
@@ -230,16 +234,15 @@ void DoubleLinkedList<T>::InsertBefore(T put, T find)
     }
     if(travel)
     {
-        LLNode<T> * nn = new LLNode<T>(put);
+        
         
         if(travel == _head)
         {
-            nn->_next = _head;
-            _head->_prev = nn;
-            _head = nn;
+            Prepend(put);
         }
         else if(travel == _tail)
         {
+            LLNode<T> * nn = new LLNode<T>(put);
             nn->_next = _tail;
             nn->_prev = _tail->_prev;
             _tail->_prev->_next = nn;
@@ -247,6 +250,7 @@ void DoubleLinkedList<T>::InsertBefore(T put, T find)
         }
         else
         {
+            LLNode<T> * nn = new LLNode<T>(put);
             nn->_prev = travel->_prev;
             nn->_next = travel;
             travel->_prev->_next = nn;
@@ -262,7 +266,8 @@ template <typename T>
 void DoubleLinkedList<T>::PrintForwards()
 {
     LLNode<T> * travel = _head;
-    while (travel != nullptr) {
+    while (travel != nullptr)
+    {
         std::cout<<travel->_data<<std::endl;
         travel = travel->_next;
     }
