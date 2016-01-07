@@ -175,9 +175,9 @@ T DoubleLinkedList<T>::Extract(T data)
     {
         if(travel == _head)
             _head = travel->_next;
-        else if(travel == _tail)
+        if(travel == _tail)
             _tail = travel->_prev;
-        else{
+        else if(travel->_prev != nullptr){
             travel->_prev->_next = travel->_next;
             travel->_next->_prev = travel->_prev;
         }
