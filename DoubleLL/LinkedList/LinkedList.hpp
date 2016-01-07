@@ -30,8 +30,8 @@ public:
     void PrintForwards();
     void PrintBackwards();
     
-    T& getHead();
-    T& getTail();
+    LLNode<T> * getHead();
+    LLNode<T> * getTail();
     
     DoubleLinkedList();
     ~DoubleLinkedList();
@@ -61,12 +61,12 @@ DoubleLinkedList<T>::~DoubleLinkedList()
 }
 
 template <typename T>
-DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList<T> & cp)
+DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList<T> & cp) : _head(nullptr), _tail(nullptr)
 {
-    LLNode<T> * travel = _head;
+    LLNode<T> * travel = cp._head;
     while(travel != nullptr)
     {
-        Append(travel->_data);
+            Append(travel->_data);
         travel = travel->_next;
     }
 }
@@ -95,12 +95,16 @@ bool DoubleLinkedList<T>::isEmpty()
 template <typename T>
 const T & DoubleLinkedList<T>::First() const
 {
+    if(!_head)
+        throw "No first";
     return _head->_data;
 }
 
 template <typename T>
 const T & DoubleLinkedList<T>::Last() const
 {
+    if(!_tail)
+        throw "No last";
     return _tail->_data;
 }
 
@@ -135,21 +139,21 @@ void DoubleLinkedList<T>::Append(T data)
 template <typename T>
 void DoubleLinkedList<T>::Purge()
 {
-    LLNode<T> * travel = _head;
-    if(_head != nullptr && _head->_next != nullptr)
+    if(_head != nullptr)
     {
-        travel = travel->_next;
-        while(travel != nullptr)
+        LLNode<T> * travel = _tail;
+        while(travel->_prev != nullptr)
         {
-            delete travel->_prev;
-            travel = travel->_next;
+            travel = travel->_prev;
+            std::cout<<"Delete: "<<travel->_next->_data<<std::endl;
+            delete travel->_next;
+            //travel->_next = nullptr;
         }
-        delete _tail;
+        delete travel;
         _head = nullptr;
         _tail = nullptr;
+
     }
-    else
-        delete _head;
 }
 
 template <typename T>
@@ -189,19 +193,70 @@ void DoubleLinkedList<T>::InsertAfter(T put, T find)
     }
     if(travel)
     {
+        LLNode<T> * nn = new LLNode<T>(put);
+        
         if(travel == _head)
-            _head = travel->_next;
-        else if(travel == _tail)
-            _tail = travel->_prev;
-        else{
-            travel->_prev->_next = travel->_next;
-            travel->_next->_prev = travel->_prev;
+        {
+            nn->_prev = _head;
+            nn->_next = _head->_next;
+            _head->_next->_prev = nn;
+            _head->_next = nn;
         }
-        delete travel;
+        else if(travel == _tail)
+        {
+            nn->_prev = _tail;
+            _tail->_next = nn;
+            _tail = nn;
+        }
+        else
+        {
+            nn->_next = travel->_next;
+            nn->_prev = travel;
+            travel->_next->_prev = nn;
+            travel->_next = nn;
+        }
     }
     else
         throw "Data not found within list";
 }
+
+template <typename T>
+void DoubleLinkedList<T>::InsertBefore(T put, T find)
+{
+    LLNode<T> * travel = _head;
+    while (travel != nullptr && travel->_data != find)
+    {
+        travel = travel->_next;
+    }
+    if(travel)
+    {
+        LLNode<T> * nn = new LLNode<T>(put);
+        
+        if(travel == _head)
+        {
+            nn->_next = _head;
+            _head->_prev = nn;
+            _head = nn;
+        }
+        else if(travel == _tail)
+        {
+            nn->_next = _tail;
+            nn->_prev = _tail->_prev;
+            _tail->_prev->_next = nn;
+            _tail->_prev = nn;
+        }
+        else
+        {
+            nn->_prev = travel->_prev;
+            nn->_next = travel;
+            travel->_prev->_next = nn;
+            travel->_prev = nn;
+        }
+    }
+    else
+        throw "Data not found within list";
+}
+
 
 template <typename T>
 void DoubleLinkedList<T>::PrintForwards()
@@ -213,6 +268,25 @@ void DoubleLinkedList<T>::PrintForwards()
     }
 }
 
+template <typename T>
+void DoubleLinkedList<T>::PrintBackwards()
+{
+    LLNode<T> * travel = _tail;
+    while (travel != nullptr) {
+        std::cout<<travel->_data<<std::endl;
+        travel = travel->_prev;
+    }
+}
 
+template <typename T>
+LLNode<T> * DoubleLinkedList<T>::getHead()
+{
+    return _head;
+}
 
+template <typename T>
+LLNode<T> * DoubleLinkedList<T>::getTail()
+{
+    return _tail;
+}
 #endif /* DoubleLinkedList_hpp */

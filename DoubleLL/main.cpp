@@ -7,17 +7,41 @@
 //
 
 #include <iostream>
+using std::cout;
 #include "LinkedList.hpp"
 
 int main(int argc, const char * argv[]) {
     
-    LinkedList<int> * list = new LinkedList<int>;
+    DoubleLinkedList<int> * list = new DoubleLinkedList<int>;
     
     list->Prepend(100);
     list->Append(70);
     list->Append(80);
     
     list->PrintForwards();
+    list->PrintBackwards();
+    //list->Extract(70);
+    cout<<"\n\n\n";
+    list->PrintForwards();
+    list->PrintBackwards();
+    list->InsertAfter(111, 100);
+    list->PrintForwards();
+    list->PrintBackwards();
+    cout<<"\n";
+    list->InsertAfter(112, 80);
+    list->PrintForwards();
+    list->PrintBackwards();
+    cout<<"\n";
+    list->InsertAfter(113, 80);
+    list->PrintForwards();
+    list->PrintBackwards();
+    cout<<"\n\n\n";
+    list->InsertBefore(1000, 100);
+    list->InsertBefore(1000, 80);
+    list->PrintForwards();
+    list->PrintBackwards();
+    
+    
     delete list;
     
     return 0;
