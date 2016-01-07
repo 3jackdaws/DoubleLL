@@ -6,10 +6,11 @@
 //  Copyright © 2016 Ian Murphy. All rights reserved.
 //
 
+
 #ifndef LinkedList_hpp
 #define LinkedList_hpp
 
-#include <stdio.h>
+#include <iostream>
 #include "LLNode.hpp"
 
 template <typename T>
@@ -105,14 +106,109 @@ void LinkedList<T>::Prepend(T data)
     LLNode<T> * old_head = _head;
     _head = new LLNode<T>(data);
     _head->_next = old_head;
+    if(_tail == nullptr)
+    {
+        _tail = _head;
+    }
 }
 
 template <typename T>
 void LinkedList<T>::Append(T data)
 {
-    _tail->_next = new LLNode<T>(data);
-    _tail->_next->_prev = _tail;
-    _tail = _tail->_next;
+    if(_tail != nullptr)
+    {
+        _tail->_next = new LLNode<T>(data);
+        _tail->_next->_prev = _tail;
+        _tail = _tail->_next;
+    }
+    else
+    {
+        Prepend(data);
+    }
+    
 }
+
+template <typename T>
+void LinkedList<T>::Purge()
+{
+    LLNode<T> * travel = _head;
+    if(_head != nullptr && _head->_next != nullptr)
+    {
+        travel = travel->_next;
+        while(travel != nullptr)
+        {
+            delete travel->_prev;
+            travel = travel->_next;
+        }
+        delete _tail;
+        _head = nullptr;
+        _tail = nullptr;
+    }
+    else
+        delete _head;
+}
+
+template <typename T>
+T LinkedList<T>::Extract(T data)
+{
+    
+    LLNode<T> * travel = _head;
+    while (travel != nullptr && travel->_data != data)
+    {
+        travel = travel->_next;
+    }
+    if(travel)
+    {
+        if(travel == _head)
+            _head = travel->_next;
+        else if(travel == _tail)
+            _tail = travel->_prev;
+        else{
+            travel->_prev->_next = travel->_next;
+            travel->_next->_prev = travel->_prev;
+        }
+        delete travel;
+    }
+    else
+        throw "Data not found within list";
+    return data;
+}
+
+
+template <typename T>
+void LinkedList<T>::InsertAfter(T put, T find)
+{
+    LLNode<T> * travel = _head;
+    while (travel != nullptr && travel->_data != find)
+    {
+        travel = travel->_next;
+    }
+    if(travel)
+    {
+        if(travel == _head)
+            _head = travel->_next;
+        else if(travel == _tail)
+            _tail = travel->_prev;
+        else{
+            travel->_prev->_next = travel->_next;
+            travel->_next->_prev = travel->_prev;
+        }
+        delete travel;
+    }
+    else
+        throw "Data not found within list";
+}
+
+template <typename T>
+void LinkedList<T>::PrintForwards()
+{
+    LLNode<T> * travel = _head;
+    while (travel != nullptr) {
+        std::cout<<travel->_data<<std::endl;
+        travel = travel->_next;
+    }
+}
+
+
 
 #endif /* LinkedList_hpp */
