@@ -41,6 +41,10 @@ int main(int argc, const char * argv[]) {
     list->PrintForwards();
     list->PrintBackwards();
     
+    *list = *list;
+
+    list->PrintForwards();
+    list->PrintBackwards();
     
     delete list;
     

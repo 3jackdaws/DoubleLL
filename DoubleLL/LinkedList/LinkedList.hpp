@@ -25,8 +25,8 @@ public:
     void Append(T);
     void Purge();
     T Extract(T);
-    void InsertAfter(T put, T find);
-    void InsertBefore(T put, T find);
+    void InsertAfter(const T & put, const T & find);
+    void InsertBefore(const T & put, const T & find);
     void PrintForwards();
     void PrintBackwards();
     
@@ -66,7 +66,7 @@ DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList<T> & cp) : _head(nu
     LLNode<T> * travel = cp._head;
     while(travel != nullptr)
     {
-            Append(travel->_data);
+        Append(travel->_data);
         travel = travel->_next;
     }
 }
@@ -74,12 +74,16 @@ DoubleLinkedList<T>::DoubleLinkedList(const DoubleLinkedList<T> & cp) : _head(nu
 template <typename T>
 DoubleLinkedList<T> & DoubleLinkedList<T>::operator=(const DoubleLinkedList<T> & rhs)
 {
-    Purge();
-    LLNode<T> * travel = rhs._head;
-    while(travel != nullptr)
+    if(this != &rhs)
     {
-        Append(travel->_data);
-        travel = travel->_next;
+        Purge();
+        LLNode<T> * travel = rhs._head;
+        while(travel != nullptr)
+        {
+            Append(travel->_data);
+            travel = travel->_next;
+        }
+
     }
     return *this;
 }
@@ -151,7 +155,6 @@ void DoubleLinkedList<T>::Purge()
         while(travel->_prev != nullptr)
         {
             travel = travel->_prev;
-            std::cout<<"Delete: "<<travel->_next->_data<<std::endl;
             delete travel->_next;
             //travel->_next = nullptr;
         }
@@ -190,7 +193,7 @@ T DoubleLinkedList<T>::Extract(T data)
 
 
 template <typename T>
-void DoubleLinkedList<T>::InsertAfter(T put, T find)
+void DoubleLinkedList<T>::InsertAfter(const T & put, const T & find)
 {
     LLNode<T> * travel = _head;
     while (travel != nullptr && travel->_data != find)
@@ -225,7 +228,7 @@ void DoubleLinkedList<T>::InsertAfter(T put, T find)
 }
 
 template <typename T>
-void DoubleLinkedList<T>::InsertBefore(T put, T find)
+void DoubleLinkedList<T>::InsertBefore(const T & put, const T & find)
 {
     LLNode<T> * travel = _head;
     while (travel != nullptr && travel->_data != find)
